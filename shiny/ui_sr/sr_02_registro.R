@@ -23,25 +23,17 @@ observeEvent(req(pr3, input$liga1), {
 #
 # prediccion del jugador
 data <- reactive(
-  
-  equipos %>%
-    mutate(resul_gru = case_when(Equipo %in% c(input$a1, input$b1, input$c1, input$d1,
-                                               input$e1, input$f1, input$g1, input$h1) ~ "1",
-                                 Equipo %in% c(input$a2, input$b2, input$c2, input$d2,
-                                               input$e2, input$f2, input$g2, input$h2) ~ "2",
-                                 T ~ "")) %>% 
-    filter(resul_gru != "") %>%
-    mutate(resul_gru = as.numeric(resul_gru),
-           Jugador = input$nombre,
-           Liga = input$liga) %>% 
-    select(Siglas, Equipo, Grupo, Prediccion = resul_gru, Liga, Jugador)
+  data.frame(
+    Jugador = input$nombre,
+    Liga = input$liga,
+    Clave = input$clave)
 )  
 #
 # infobox - prediccion es correcta o no
 output$ib_res_con <- renderInfoBox({
-  if(dim(data())[1] == 16 & input$nombre != "..." & input$liga != "..."){
+  if(input$nombre != "..." & input$liga != "..." & input$clave != "..."){
     colorib = "green"
-    mensaje = "Puede enviar sus resultados"
+    mensaje = "Envía tu información"
     iconob = icon("ok", lib = "glyphicon")
   }else if(input$nombre == "..."){
     colorib = "red"
@@ -51,13 +43,17 @@ output$ib_res_con <- renderInfoBox({
     colorib = "red"
     mensaje = "Selecciona una Liga"
     iconob = icon("remove", lib = "glyphicon")
+  }else if(input$clave == "..."){
+    colorib = "red"
+    mensaje = "Ingresa una contraseña diferente de ..."
+    iconob = icon("remove", lib = "glyphicon")
   }else{
     colorib = "red"
-    mensaje = "Seleccione un equipo diferente en cada grupo"
+    mensaje = "La la la la"
     iconob = icon("remove", lib = "glyphicon")
   }
   infoBox(
-    HTML("Estado de tu predicción"), 
+    HTML("Estado de tu registro"), 
     h6(mensaje), 
     icon = iconob,
     color = colorib, 
@@ -70,21 +66,19 @@ observeEvent(input$pronostico, {
   # debug_msg("pronostico")
   # save the data and update summary data
   v$guardado <- T
-  v$codigo <- stri_rand_strings(1,6)
-  dato <- data() %>% 
-    mutate(Codigo = v$codigo)
-  v$predicciones <- agrega_prediccion(dato, T) #USING_GS4
+  dato <- data() 
+  v$info_registro1 <- agrega_prediccion(dato, T) #USING_GS4
   
 })
 #
 # infobox de envío de resultados
 output$ib_env_res <- renderValueBox({
   mensaje <- "Envía"
-  subt <- "tu pronóstico"
+  subt <- "tu registro"
   colorib <- "red"
   if(v$guardado == T){
     mensaje <- v$codigo
-    subt <- "su código de participación. Guárdalo!!!"
+    subt <- "Registro exitoso"
     colorib <- "green"
   }
   valueBox(

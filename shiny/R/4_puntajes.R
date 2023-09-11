@@ -1,5 +1,12 @@
 #
 library(tidyverse)
+# Tratamiento información de registro
+bdd1 <- info_registro %>% 
+  group_by(Jugador, Liga) %>% 
+  summarise(Clave = last(Clave)) %>% 
+  ungroup()
+
+
 #
 # Cálculo de los puntajes
 #

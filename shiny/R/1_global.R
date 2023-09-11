@@ -1,5 +1,19 @@
 library(googlesheets4)
 gs4_deauth()
+registro_archivo <- "https://docs.google.com/spreadsheets/d/1XhPgP6gahj3XVAxT6MUTKYUwR6kV36cBW2m0GGo_K5w/"
+info_registro <- read_sheet(registro_archivo)
+
+gs4_deauth()
+j <- "https://docs.google.com/spreadsheets/d/1MSyifURW5-OQJKcDbpISaJb6SdLMtCRz4xLidhmXulQ/"
+jornadas <- read_sheet(j)
+
+gs4_deauth()
+k <- "https://docs.google.com/spreadsheets/d/1qnTprfZFP2p19_w3zq-opwtKGvJ6e_3-_2fTgk6HBgk/"
+pre_jornadas_f <- read_sheet(k)
+
+
+
+gs4_deauth()
 qatar22 <- "https://docs.google.com/spreadsheets/d/13qZaElTnoTFK1f40lKW9geqS6dsbqkJOzMAbIoLs8IU/"
 equipos <- read_sheet(qatar22)
 

@@ -3,14 +3,14 @@
 output$tiempo <- renderValueBox({
   invalidateLater(1000, session)
   
-  t1 <- difftime(as.POSIXlt.character("2022-11-20 11:00:00 -05"), Sys.time(), units = "days") + 5/24
-  t2 <- difftime(as.POSIXlt.character("2022-12-18 10:00:00 -05"), Sys.time(), units = "days") + 5/24
+  t1 <- difftime(as.POSIXlt.character("2026-06-09 12:00:00 -05"), Sys.time(), units = "days") + 5/24
+  t2 <- difftime(as.POSIXlt.character("2026-07-19 12:00:00 -05"), Sys.time(), units = "days") + 5/24
   if(as.numeric(t1)<0){
     t <- t2
-    debajo <- "restantes para la final de Qatar 2022"
+    debajo <- "restantes para la final del mundial 2026"
   }else{
     t <- t1
-    debajo <- "restantes para Qatar 2022"
+    debajo <- "restantes para el mundial 2026"
   }
   t <- as.numeric(t)
   dias <- floor(t)
