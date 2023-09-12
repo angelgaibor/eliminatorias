@@ -8,18 +8,6 @@ observeEvent(req(lista_ligas), {
                        choices  = c("Todos contra todos", unique(lista_ligas$Liga)))
 })
 
-observeEvent(req(pr3, input$liga1), {
-  if(input$liga1 == "Todos contra todos"){
-    pr31 <- pr3 %>% 
-      mutate(Jugador = paste0(toupper(substr(Liga, 1, 3)), " ", Jugador))
-  }else{
-    pr31 <- pr3 %>% 
-      filter(Liga == input$liga1)
-  }
-  
-  updateSelectizeInput(session, inputId = "jugador1", label = 'Selecciona al jugador:', selected = "Todos",
-                       choices  = c("Todos", unique(pr31$Jugador)))
-})
 #
 # prediccion del jugador
 data <- reactive(
@@ -62,7 +50,7 @@ output$ib_res_con <- renderInfoBox({
 })
 #
 # envía la predicción
-observeEvent(input$pronostico, {
+observeEvent(input$ab_registro, {
   # debug_msg("pronostico")
   # save the data and update summary data
   v$guardado <- T

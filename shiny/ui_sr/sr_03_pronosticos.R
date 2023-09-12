@@ -53,12 +53,14 @@ pre_jornada <- reactive({
   )
 })
 
+
+
 #Infobox: verificar si jugador y codigo existe
 output$ib_inf_jug <- renderInfoBox({
-  if(paste0(input$ingreso_usuario, input$ingreso_clave) %in% paste0(bdd1$Jugador, bdd1$Clave)){
+  if(paste0(input$ingreso_usuario, input$ingreso_clave) %in% paste0(info_registro$Jugador, info_registro$Clave)){
     titulo = "Identificación"
-    valor = paste0("Jugador: ", bdd1$Jugador[tolower(bdd1$Clave) == tolower(input$ingreso_clave)])
-    subtitulo = paste0("Liga: ", bdd1$Liga[tolower(bdd1$Clave) == tolower(input$ingreso_clave)])
+    valor = paste0("Jugador: ", info_registro$Jugador[tolower(info_registro$Clave) == tolower(input$ingreso_clave)])
+    subtitulo = paste0("Liga: ", info_registro$Liga[tolower(info_registro$Clave) == tolower(input$ingreso_clave)])
     colorib = "green"
     iconob = icon("ok", lib = "glyphicon")
   }else{
@@ -70,14 +72,34 @@ output$ib_inf_jug <- renderInfoBox({
   }
   infoBox(titulo, valor, subtitulo, color = colorib, icon = iconob, width = 12)
 })
+#
 # Botón para envío de resultado
 observeEvent(input$pro_jor, {
-  v_c$guardado <- T
+  v_j$guardado <- T
   pre_jf <- pre_jornada() %>%
     mutate(usuario = input$ingreso_usuario,
            clave = input$ingreso_clave) %>% 
     select(loc, vis, gl, gv, usuario, clave) %>% 
     ungroup() %>% 
     as.data.frame()
-  v_c$pre_cuartos_fin <- agrega_prediccion_jornada(pre_jf, T)
+  v_j$pre_cuartos_fin <- agrega_prediccion_jornada(pre_jf, T)
+})
+#
+# infobox de envío de resultados
+output$ib_env_pro <- renderValueBox({
+  mensaje <- "Completa"
+  subt <- "tu pronóstico"
+  colorib <- "red"
+  if(v_j$guardado == T){
+    mensaje <- v$codigo
+    subt <- "Pronóstico enviado"
+    colorib <- "green"
+  }
+  valueBox(
+    mensaje,
+    subt,
+    icon = icon("cloud-upload", lib = "glyphicon"),
+    color = colorib, 
+    width = 12
+  )
 })

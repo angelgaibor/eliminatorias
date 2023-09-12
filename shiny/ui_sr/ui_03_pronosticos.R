@@ -1,6 +1,6 @@
 #
 ui_pronosticos <-
-  tabItem("juega_octavos",
+  tabItem("pronosticos",
           tags$style(
             ".container {
                           display: flex;
@@ -27,7 +27,7 @@ ui_pronosticos <-
           ),
           fluidRow(width = 12,
                    column(width = 6, align = "center",
-                          valueBox(value = "Jornada", color = "red", subtitle = NULL, width = 12),
+                          valueBox(value = paste0("Jornada ", unique(jornadas$Jornada[jornadas$Activa == 1])), color = "red", subtitle = NULL, width = 12),
                           div(
                             class = "container",
                             div(class = "container-items",
@@ -107,7 +107,9 @@ ui_pronosticos <-
                                     width = "168px"),
                           infoBoxOutput("ib_inf_jug", width = 12),
                           # comentamos boton para no poder enviar mas resultados
-                          actionButton("pro_jor", "Envía tu pronóstico")
+                          actionButton("pro_jor", "Envía tu pronóstico"),
+                          br(), br(),
+                          valueBoxOutput("ib_env_pro", width = 12)
                    ),
                    column(width = 1)
           )

@@ -13,35 +13,23 @@ server <- function(input, output, session){
   
   # reactive values
   v <- reactiveValues()
-  v_o <- reactiveValues()
-  v_c <- reactiveValues()
-  v_s <- reactiveValues()
-  v_f <- reactiveValues()
+  v_j <- reactiveValues()
   
   # Inicialización de objetos
   v$guardado <- F
-  v_o$guardado <- F
-  v_c$guardado <- F
-  v_s$guardado <- F
-  v_f$guardado <- F
-  
-  dato <- data.frame(
-    Siglas = character(0),
-    Equipo = character(0),
-    Grupo	= character(0),
-    Prediccion = double(0),
-    Liga = character(0),
-    Jugador = character(0),
-    Codigo = character(0))
+  v_j$guardado <- F
   
   # server tab info
   source("ui_sr/sr_01_info.R", local = T)
   
-  # server tab: juega conmigo - fase de grupos
+  # server tab: registro
   source("ui_sr/sr_02_registro.R", local = T)
   
-  # server tab: juega conmigo - fase de grupos
+  # server tab: pronosticos
   source("ui_sr/sr_03_pronosticos.R", local = T)
+  
+  # server tab: puntajes
+  source("ui_sr/sr_06_puntaje.R", local = T)
   
 
   

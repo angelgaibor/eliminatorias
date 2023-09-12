@@ -13,12 +13,11 @@ ui_registro <-
           )
           ,
           fluidRow(align = "center",
-                   column(width = 4, ""),
-                   column(width = 4, infoBoxOutput("ib_res_con", width = 12),
-                          actionButton("pronostico", "Envía tu registro"),
+                   column(width = 4,
+                          infoBoxOutput("ib_res_con", width = 12),
+                          actionButton("ab_registro", "Envía tu registro"),
                           br(), br(),
                           valueBoxOutput("ib_env_res", width = 12)
-                   ),
-                   column(width = 4, "")
+                   )
           )
   )
