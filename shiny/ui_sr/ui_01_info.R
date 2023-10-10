@@ -19,7 +19,16 @@ ui_info <-
                               (1970 y 1986), en tanto Estados Unidos será el sexto en 
                               albergar al menos dos (1994) y Canadá sería sede por primera vez.",
                               br(), br(),
-                              "PD. En Ecuador no está convocado Leito Campana :(",
+                              "PD. En Ecuador no está convocado Leito Campana :( (dos fechas
+                              y contando)",
+                              br(), br(),
+                              "PD2. Si Ecuador puede clasificar a la Copa del Mundo, Las Muestritas
+                              también pueden al cuadrangular final. A ganar equipo...!!!",
+                              # br(), br(),
+                              # HTML('<iframe 
+                              #      src="https://www.youtu.be/embed/XN-rQ0DvKVQ" frameborder="0" 
+                              #      allow="accelerometer; autoplay; encrypted-media; gyroscope; 
+                              #      picture-in-picture" allowfullscreen></iframe>'),
                               br()),
                           box(title = "Reglas del juego", status = "danger", solidHeader = T, width = 12,
                               strong("Registro:"), br(),
