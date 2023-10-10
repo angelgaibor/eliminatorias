@@ -1,43 +1,43 @@
 #
 #Input de equipos clasificados a octavos #####
 output$nel1 <- renderText({
-  jornadas$Local[jornadas$Activa == 1][1]
+  r_jornadas()$Local[r_jornadas()$Activa == 1][1]
 })
 
 output$nev1 <- renderText({
-  jornadas$Visitante[jornadas$Activa == 1][1]
+  r_jornadas()$Visitante[r_jornadas()$Activa == 1][1]
 })
 
 output$nel2 <- renderText({
-  jornadas$Local[jornadas$Activa == 1][2]
+  r_jornadas()$Local[r_jornadas()$Activa == 1][2]
 })
 
 output$nev2 <- renderText({
-  jornadas$Visitante[jornadas$Activa == 1][2]
+  r_jornadas()$Visitante[r_jornadas()$Activa == 1][2]
 })
 
 output$nel3 <- renderText({
-  jornadas$Local[jornadas$Activa == 1][3]
+  r_jornadas()$Local[r_jornadas()$Activa == 1][3]
 })
 
 output$nev3 <- renderText({
-  jornadas$Visitante[jornadas$Activa == 1][3]
+  r_jornadas()$Visitante[r_jornadas()$Activa == 1][3]
 })
 
 output$nel4 <- renderText({
-  jornadas$Local[jornadas$Activa == 1][4]
+  r_jornadas()$Local[r_jornadas()$Activa == 1][4]
 })
 
 output$nev4 <- renderText({
-  jornadas$Visitante[jornadas$Activa == 1][4]
+  r_jornadas()$Visitante[r_jornadas()$Activa == 1][4]
 })
 
 output$nel5 <- renderText({
-  jornadas$Local[jornadas$Activa == 1][5]
+  r_jornadas()$Local[r_jornadas()$Activa == 1][5]
 })
 
 output$nev5 <- renderText({
-  jornadas$Visitante[jornadas$Activa == 1][5]
+  r_jornadas()$Visitante[r_jornadas()$Activa == 1][5]
 })
 
 
@@ -46,8 +46,8 @@ pre_jornada <- reactive({
       input$gv1, input$gv2, input$gv3, input$gv4, input$gv5)
   
   data.frame(
-    loc = jornadas$Local[jornadas$Activa == 1],
-    vis = jornadas$Visitante[jornadas$Activa == 1],
+    loc = r_jornadas()$Local[r_jornadas()$Activa == 1],
+    vis = r_jornadas()$Visitante[r_jornadas()$Activa == 1],
     gl = c(input$gl1, input$gl2, input$gl3, input$gl4, input$gl5),
     gv = c(input$gv1, input$gv2, input$gv3, input$gv4, input$gv5)
   )
@@ -57,10 +57,10 @@ pre_jornada <- reactive({
 
 #Infobox: verificar si jugador y codigo existe
 output$ib_inf_jug <- renderInfoBox({
-  if(paste0(input$ingreso_usuario, input$ingreso_clave) %in% paste0(info_registro$Jugador, info_registro$Clave)){
+  if(paste0(input$ingreso_usuario, input$ingreso_clave) %in% paste0(r_registro()$Jugador, r_registro()$Clave)){
     titulo = "Identificación"
-    valor = paste0("Jugador: ", info_registro$Jugador[tolower(info_registro$Clave) == tolower(input$ingreso_clave)])
-    subtitulo = paste0("Liga: ", info_registro$Liga[tolower(info_registro$Clave) == tolower(input$ingreso_clave)])
+    valor = paste0("Jugador: ", r_registro()$Jugador[tolower(r_registro()$Clave) == tolower(input$ingreso_clave)])
+    subtitulo = paste0("Liga: ", r_registro()$Liga[tolower(r_registro()$Clave) == tolower(input$ingreso_clave)])
     colorib = "green"
     iconob = icon("ok", lib = "glyphicon")
   }else{

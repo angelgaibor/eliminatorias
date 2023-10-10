@@ -18,7 +18,7 @@ source("ui_sr/ui_05_tabla_posiciones.R", local = T)
 source("ui_sr/ui_06_puntaje.R", local = T)
 
 # autorizacion en google sheet
-gs4_auth(cache = ".secrets", email = "endi.dm.inec@gmail.com")
+gs4_auth(cache = ".secrets", email = "endi.dm.inec1@gmail.com")
 
 ui <- dashboardPage(skin="black",
                     

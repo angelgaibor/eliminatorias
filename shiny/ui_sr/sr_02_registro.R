@@ -1,11 +1,11 @@
 #
 # lista de ligas
-observeEvent(req(lista_ligas), {
+observeEvent(req(r_ligas()), {
   updateSelectizeInput(session, inputId = "liga", label = 'Selecciona tu Liga:', selected = NULL,
-                       choices  = unique(lista_ligas$Liga))
+                       choices  = unique(r_ligas()$Liga))
   
   updateSelectizeInput(session, inputId = "liga1", label = 'Selecciona tu Liga:', selected = "Todos contra todos",
-                       choices  = c("Todos contra todos", unique(lista_ligas$Liga)))
+                       choices  = c("Todos contra todos", unique(r_ligas()$Liga)))
 })
 
 #

@@ -19,6 +19,23 @@ server <- function(input, output, session){
   v$guardado <- F
   v_j$guardado <- F
   
+  # Creación reactivos googlesheet
+  r_ligas <- reactive({
+    read_sheet(enlace_ligas)
+  
+  })
+  
+  r_registro <- reactive({
+    read_sheet(enlace_registro)
+  })
+  
+  r_jornadas <- reactive({
+    read_sheet(enlace_jornadas)
+  })
+  
+  r_predicciones <- reactive({
+    read_sheet(enlace_predicciones)
+  })
   # server tab info
   source("ui_sr/sr_01_info.R", local = T)
   

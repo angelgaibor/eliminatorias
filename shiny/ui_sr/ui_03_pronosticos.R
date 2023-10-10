@@ -27,7 +27,7 @@ ui_pronosticos <-
           ),
           fluidRow(width = 12,
                    column(width = 6, align = "center",
-                          valueBox(value = paste0("Jornada ", unique(jornadas$Jornada[jornadas$Activa == 1])), color = "red", subtitle = NULL, width = 12),
+                          valueBox(value = paste0("Jornada ", unique(bdd2$Jornada[bdd2$Activa == 1])), color = "red", subtitle = NULL, width = 12),
                           div(
                             class = "container",
                             div(class = "container-items",
